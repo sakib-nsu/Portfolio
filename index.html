@@ -131,6 +131,13 @@
     .typed-cursor { display: inline-block; animation: blink 1s step-end infinite; }
   </style>
 </head>
+
+
+
+
+
+
+
 <body class="bg-[#F8FAFC] text-[#0F172A]">
 
   <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
@@ -219,11 +226,11 @@
         <!-- Floating badges -->
         <div class="animate-floatY absolute -bottom-1 -right-8 md:-right-14 text-[.7rem] font-bold px-3 py-[.35rem] rounded-full whitespace-nowrap z-10 backdrop-blur-sm"
              style="background:rgba(37,99,235,.25);border:1px solid rgba(96,165,250,.4);color:#93C5FD">
-          ⚡ Front-End Dev
-        </div>
-        <div class="animate-floatYDelay absolute top-2 -right-6 md:-right-10 text-[.7rem] font-bold px-3 py-[.35rem] rounded-full whitespace-nowrap z-10 backdrop-blur-sm"
-             style="background:rgba(217,119,6,.2);border:1px solid rgba(251,191,36,.35);color:#FCD34D">
           🔍 SEO Expert
+        </div>
+        <div class="animate-floatY Delay absolute -top-3 -right-6 md:-right-10 text-[.7rem] font-bold px-3 py-[.35rem] rounded-full whitespace-nowrap z-10 backdrop-blur-sm"
+             style="background:rgba(217,119,6,.2);border:1px solid rgba(251,191,36,.35);color:#ebca5d">
+          ⚡ Front-End Dev
         </div>
       </div>
 
@@ -235,7 +242,7 @@
         </div>
         <h1 class="font-serif font-black text-white leading-[1.05] mb-4" style="font-size:clamp(2.4rem,5vw,3.8rem)">
           <span class="block">Mohammad</span>
-          <span class="text-blue-400 not-italic">Sakib </span><em>Hossen</em>
+          <em class="text-blue-400">Sakib </em><span>Hossen</span>
         </h1>
         <p id="heroSub" class="text-blue-300 font-semibold text-base md:text-lg mb-4 min-h-[1.8em]">
           <span id="typedText">Front-End Developer</span><span class="typed-cursor text-blue-400">|</span>
@@ -597,228 +604,104 @@
   </section>
 
   <!-- ════════════════════════════════ FOOTER ═══════════════════════════ -->
-  <footer class="bg-[#0F172A] text-white/50 py-12 text-center text-[.875rem]">
-    <div class="font-serif font-bold text-[1.15rem] text-white mb-1">Mohammad Sakib Hossen</div>
-    <div>Front-End Developer &amp; Senior SEO Executive</div>
-    <div class="text-[.72rem] opacity-35 mt-4">&copy; 2025 Mohammad Sakib Hossen. All rights reserved.</div>
+ <footer class="bg-[#060d1f] text-white/50 relative overflow-hidden">
+
+    <!-- Top gradient border -->
+    <div class="h-px w-full" style="background:linear-gradient(90deg, transparent, #2563EB 30%, #60A5FA 50%, #2563EB 70%, transparent)"></div>
+
+    <!-- Subtle background glow -->
+    <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 60% 40% at 50% 0%, rgba(37,99,235,.07) 0%, transparent 70%)"></div>
+
+    <div class="relative max-w-[1100px] mx-auto px-6 pt-16 pb-8">
+
+      <!-- Top row: brand + social -->
+      <div class="flex flex-col md:flex-row items-center md:items-start justify-between gap-10 mb-12">
+
+        <!-- Brand block -->
+        <div class="text-center md:text-left">
+          <a href="#hero" class="font-serif font-black text-2xl text-white hover:text-blue-400 transition-colors duration-200 inline-block mb-2">
+            Sakib</span>
+          </a>
+          <p class="text-white/45 text-sm max-w-[260px] leading-relaxed mx-auto md:mx-0">
+            Front-End Developer &amp; Senior SEO Executive crafting clean digital experiences from Dhaka, BD.
+          </p>
+        </div>
+
+        <!-- Nav quick links -->
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-3">
+          <a href="#about"      class="text-sm text-white/45 hover:text-white transition-colors duration-200">About</a>
+          <a href="#skills"     class="text-sm text-white/45 hover:text-white transition-colors duration-200">Skills</a>
+          <a href="#experience" class="text-sm text-white/45 hover:text-white transition-colors duration-200">Experience</a>
+          <a href="#project"    class="text-sm text-white/45 hover:text-white transition-colors duration-200">Project</a>
+          <a href="#education"  class="text-sm text-white/45 hover:text-white transition-colors duration-200">Education</a>
+          <a href="#contact"    class="text-sm text-white/45 hover:text-white transition-colors duration-200">Contact</a>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="h-px bg-white/[.07] mb-8"></div>
+
+      <!-- Bottom row: copyright + socials -->
+      <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-5">
+
+        <!-- Copyright -->
+        <p class="text-[.78rem] text-white/25">&copy; 2026 Mohammad Sakib Hossen. All rights reserved.</p>
+
+        <!-- Social icons -->
+        <div class="flex items-center gap-3">
+
+          <!-- GitHub -->
+          <a href="https://github.com/sakib-nsu" target="_blank" rel="noopener"
+             class="w-9 h-9 rounded-xl flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200"
+             aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/mohammad-sakib-hossen/" target="_blank" rel="noopener"
+             class="w-9 h-9 rounded-xl flex items-center justify-center text-white/40 hover:text-[#0A66C2] hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200"
+             aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+
+          <!-- Twitter / X -->
+          <a href="https://x.com/mohammadsakib01" target="_blank" rel="noopener"
+             class="w-9 h-9 rounded-xl flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200"
+             aria-label="Twitter / X">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.631 5.905-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/Mohammad.Sakib.Hossen0/" target="_blank" rel="noopener"
+             class="w-9 h-9 rounded-xl flex items-center justify-center text-white/40 hover:text-[#1877F2] hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200"
+             aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+
+          <!-- Email -->
+          <a href="sakibsardar2233@email.com"
+             class="w-9 h-9 rounded-xl flex items-center justify-center text-white/40 hover:text-blue-400 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200"
+             aria-label="Email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
   </footer>
 
-  <!-- ══════════════════════════════════════════════════════════════════
-       SCRIPTS (particle canvas + profile + nav + scroll + typed)
-  ══════════════════════════════════════════════════════════════════ -->
-  <script>
-  /* ── 1. PARTICLE HERO CANVAS ─────────────────────────────────────── */
-  (function initParticles() {
-    const canvas = document.getElementById('heroCanvas');
-    const ctx    = canvas.getContext('2d');
-    const CONFIG = {
-      particleCount : 130, maxSpeed:0.35, minRadius:1, maxRadius:2.8,
-      connectionDist:130, mouseRadius:160,
-      colors:['#3B82F6','#60A5FA','#93C5FD','#BFDBFE','#ffffff'],
-      bgColor:'#060d1f',
-    };
-    let W, H, mouse={x:-9999,y:-9999}, particles=[], animId;
 
-    function resize() {
-      const hero = document.getElementById('hero');
-      W = canvas.width  = hero.offsetWidth;
-      H = canvas.height = hero.offsetHeight;
-    }
-
-    class Particle {
-      constructor() { this.reset(true); }
-      reset(initial) {
-        this.x=Math.random()*W; this.y=initial?Math.random()*H:-10;
-        this.r=CONFIG.minRadius+Math.random()*(CONFIG.maxRadius-CONFIG.minRadius);
-        this.vx=(Math.random()-.5)*CONFIG.maxSpeed*2;
-        this.vy=(Math.random()-.5)*CONFIG.maxSpeed*2;
-        this.alpha=.2+Math.random()*.65; this.baseAlpha=this.alpha;
-        this.colorIdx=Math.floor(Math.random()*CONFIG.colors.length);
-        this.twinkleSpeed=.008+Math.random()*.015;
-        this.twinkleDir=Math.random()>.5?1:-1;
-      }
-      update() {
-        this.x+=this.vx; this.y+=this.vy;
-        const dx=this.x-mouse.x, dy=this.y-mouse.y;
-        const dist=Math.sqrt(dx*dx+dy*dy);
-        if(dist<CONFIG.mouseRadius){const f=(CONFIG.mouseRadius-dist)/CONFIG.mouseRadius;this.x+=dx/dist*f*2.5;this.y+=dy/dist*f*2.5;}
-        this.alpha+=this.twinkleSpeed*this.twinkleDir;
-        if(this.alpha>this.baseAlpha+.3||this.alpha<.1) this.twinkleDir*=-1;
-        if(this.x<-5)this.x=W+5; if(this.x>W+5)this.x=-5;
-        if(this.y<-5)this.y=H+5; if(this.y>H+5)this.y=-5;
-      }
-      draw() {
-        ctx.save(); ctx.globalAlpha=Math.max(0,Math.min(1,this.alpha));
-        ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-        ctx.fillStyle=CONFIG.colors[this.colorIdx]; ctx.fill();
-        if(this.r>1.8){
-          ctx.beginPath(); ctx.arc(this.x,this.y,this.r*2.5,0,Math.PI*2);
-          const g=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r*2.5);
-          g.addColorStop(0,CONFIG.colors[this.colorIdx]+'55'); g.addColorStop(1,'transparent');
-          ctx.fillStyle=g; ctx.fill();
-        }
-        ctx.restore();
-      }
-    }
-
-    function drawConnections(){
-      for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
-        const a=particles[i],b=particles[j];
-        const d=Math.sqrt((a.x-b.x)**2+(a.y-b.y)**2);
-        if(d<CONFIG.connectionDist){
-          ctx.save(); ctx.globalAlpha=(1-d/CONFIG.connectionDist)*.25;
-          ctx.strokeStyle='#3B82F6'; ctx.lineWidth=.6;
-          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); ctx.restore();
-        }
-      }
-    }
-
-    let shootingStars=[];
-    function spawnShootingStar(){shootingStars.push({x:Math.random()*W,y:Math.random()*H*.5,len:80+Math.random()*80,speed:6+Math.random()*6,alpha:1,angle:Math.PI/5+(Math.random()-.5)*.3});}
-    function updateShootingStars(){
-      shootingStars=shootingStars.filter(s=>s.alpha>0);
-      for(const s of shootingStars){
-        s.x+=Math.cos(s.angle)*s.speed; s.y+=Math.sin(s.angle)*s.speed; s.alpha-=.022;
-        ctx.save(); ctx.globalAlpha=Math.max(0,s.alpha);
-        const g=ctx.createLinearGradient(s.x,s.y,s.x-Math.cos(s.angle)*s.len,s.y-Math.sin(s.angle)*s.len);
-        g.addColorStop(0,'#fff'); g.addColorStop(1,'transparent');
-        ctx.strokeStyle=g; ctx.lineWidth=1.5;
-        ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(s.x-Math.cos(s.angle)*s.len,s.y-Math.sin(s.angle)*s.len); ctx.stroke(); ctx.restore();
-      }
-    }
-    setInterval(()=>{if(document.visibilityState!=='hidden')spawnShootingStar();},3500);
-
-    const nebulae=[{x:.75,y:.3,r:.35,c:'rgba(37,99,235,'},{x:.2,y:.7,r:.28,c:'rgba(96,165,250,'},{x:.5,y:.15,r:.22,c:'rgba(37,99,235,'}];
-    function drawNebulae(){
-      for(const n of nebulae){
-        const cx=n.x*W,cy=n.y*H,rad=n.r*Math.min(W,H);
-        const g=ctx.createRadialGradient(cx,cy,0,cx,cy,rad);
-        g.addColorStop(0,n.c+'.09)'); g.addColorStop(.6,n.c+'.04)'); g.addColorStop(1,n.c+'0)');
-        ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
-      }
-    }
-
-    function loop(){
-      ctx.fillStyle=CONFIG.bgColor; ctx.fillRect(0,0,W,H);
-      drawNebulae(); drawConnections();
-      for(const p of particles){p.update();p.draw();}
-      updateShootingStars(); animId=requestAnimationFrame(loop);
-    }
-    function init(){resize();particles=Array.from({length:CONFIG.particleCount},()=>new Particle());cancelAnimationFrame(animId);loop();}
-    window.addEventListener('resize',resize);
-    document.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;});
-    document.addEventListener('mouseleave',()=>{mouse.x=-9999;mouse.y=-9999;});
-    canvas.addEventListener('touchmove',e=>{const r=canvas.getBoundingClientRect();mouse.x=e.touches[0].clientX-r.left;mouse.y=e.touches[0].clientY-r.top;e.preventDefault();},{passive:false});
-    canvas.addEventListener('touchend',()=>{mouse.x=-9999;mouse.y=-9999;});
-    document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')cancelAnimationFrame(animId);else loop();});
-    init();
-  })();
-
-  /* ── 2. PROFILE CANVAS ───────────────────────────────────────────── */
-  (function initProfile(){
-    const canvas=document.getElementById('profileCanvas');
-    if(!canvas)return;
-    const ctx=canvas.getContext('2d');
-    const SIZE=270; canvas.width=SIZE; canvas.height=SIZE;
-    function drawFallback(){
-      ctx.clearRect(0,0,SIZE,SIZE); ctx.save();
-      ctx.beginPath(); ctx.arc(SIZE/2,SIZE/2,SIZE/2,0,Math.PI*2); ctx.clip();
-      const g=ctx.createLinearGradient(0,0,SIZE,SIZE);
-      g.addColorStop(0,'#1D4ED8'); g.addColorStop(1,'#3B82F6');
-      ctx.fillStyle=g; ctx.fillRect(0,0,SIZE,SIZE);
-      ctx.fillStyle='#fff'; ctx.font=`bold 72px 'Playfair Display',serif`;
-      ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('MS',SIZE/2,SIZE/2); ctx.restore();
-    }
-    function drawRounded(imgEl){
-      ctx.clearRect(0,0,SIZE,SIZE); ctx.save();
-      ctx.beginPath(); ctx.arc(SIZE/2,SIZE/2,SIZE/2,0,Math.PI*2); ctx.clip();
-      const iw=imgEl.naturalWidth,ih=imgEl.naturalHeight;
-      ctx.drawImage(imgEl,iw*.03,ih*.015,iw*.295,ih*.225,0,0,SIZE,SIZE); ctx.restore();
-    }
-    const img=new Image();
-    img.onload=()=>drawRounded(img); img.onerror=drawFallback;
-    img.src='Mohammad_Sakib_Hossen_CV_pdf.png';
-  })();
-
-  /* ── 3. NAVBAR ───────────────────────────────────────────────────── */
-  (function initNav(){
-    const navbar=document.getElementById('navbar');
-    const menuBtn=document.getElementById('menuBtn');
-    const mobileMenu=document.getElementById('mobileMenu');
-    window.addEventListener('scroll',()=>navbar.classList.toggle('shadow-lg',window.scrollY>20));
-    menuBtn.addEventListener('click',()=>{
-      const open=mobileMenu.classList.toggle('hidden');
-      mobileMenu.classList.toggle('flex',!open);
-      const spans=menuBtn.querySelectorAll('span');
-      const isOpen=!open;
-      spans[0].style.transform=isOpen?'rotate(45deg) translate(5px,5px)':'';
-      spans[1].style.opacity=isOpen?'0':'1';
-      spans[2].style.transform=isOpen?'rotate(-45deg) translate(5px,-5px)':'';
-    });
-    mobileMenu.querySelectorAll('a').forEach(link=>{
-      link.addEventListener('click',()=>{
-        mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex');
-        menuBtn.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='1';});
-      });
-    });
-    const allLinks=document.querySelectorAll('.nav-link');
-    const io=new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          allLinks.forEach(l=>l.classList.remove('active'));
-          const active=[...allLinks].find(l=>l.getAttribute('href')==='#'+entry.target.id);
-          if(active)active.classList.add('active');
-        }
-      });
-    },{threshold:.35});
-    document.querySelectorAll('section[id]').forEach(s=>io.observe(s));
-  })();
-
-  /* ── 4. SCROLL FADE-IN ───────────────────────────────────────────── */
-  (function initFadeIn(){
-    const items=document.querySelectorAll('.fade-up');
-    const observer=new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          const siblings=[...entry.target.parentElement.querySelectorAll('.fade-up:not(.visible)')];
-          const idx=siblings.indexOf(entry.target);
-          setTimeout(()=>entry.target.classList.add('visible'),idx*90);
-          observer.unobserve(entry.target);
-        }
-      });
-    },{threshold:.12});
-    items.forEach(el=>observer.observe(el));
-  })();
-
-  /* ── 5. SMOOTH SCROLL ────────────────────────────────────────────── */
-  document.querySelectorAll('a[href^="#"]').forEach(link=>{
-    link.addEventListener('click',e=>{
-      const target=document.querySelector(link.getAttribute('href'));
-      if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
-    });
-  });
-
-  /* ── 6. TYPED TEXT ───────────────────────────────────────────────── */
-  (function initTyped(){
-    const el=document.getElementById('typedText');
-    if(!el)return;
-    const roles=['Front-End Developer','Senior SEO Executive (ORM)','ReactJS Engineer','Digital Growth Strategist'];
-    let roleIdx=0,charIdx=0,deleting=false,paused=false;
-    function tick(){
-      const current=roles[roleIdx];
-      if(paused){paused=false;setTimeout(tick,1800);return;}
-      if(!deleting){
-        el.textContent=current.slice(0,++charIdx);
-        if(charIdx===current.length){deleting=true;paused=true;}
-        setTimeout(tick,68);
-      } else {
-        el.textContent=current.slice(0,--charIdx);
-        if(charIdx===0){deleting=false;roleIdx=(roleIdx+1)%roles.length;paused=true;}
-        setTimeout(tick,32);
-      }
-    }
-    setTimeout(tick,1200);
-  })();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
