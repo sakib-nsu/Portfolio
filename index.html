@@ -52,6 +52,40 @@
     body { font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
     a    { text-decoration: none; color: inherit; }
 
+       #navbar {
+      transition: top .35s ease, background .35s ease, box-shadow .35s ease, padding .35s ease;
+    }
+    #navbar.scrolled .nav-pill {
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 8px 32px rgba(15,23,42,.10), 0 1.5px 0 rgba(226,232,240,.8);
+      border-color: rgba(226,232,240,0.9);
+    }
+
+    .smart-link {
+      position: relative;
+      font-size: .875rem;
+      color: #64748B;
+      font-weight: 500;
+      padding: .3rem .1rem;
+      transition: color .2s;
+    }
+    .smart-link::after {
+      content: '';
+      position: absolute; bottom: -1px; left: 0;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, #2563EB, #60A5FA);
+      border-radius: 2px;
+      transition: width .25s ease;
+    }
+    .smart-link:hover { color: #0F172A; }
+    .smart-link:hover::after { width: 100%; }
+    .smart-link.active { color: #2563EB; }
+    .smart-link.active::after { width: 100%; }
+
+    /* Mobile drawer slide-down */
+    @keyframes slideDown { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+    #mobileMenu.open { animation: slideDown .2s ease both; }
+
     /* Spinning conic ring */
     .profile-ring-outer::before {
       content: '';
@@ -100,34 +134,66 @@
 <body class="bg-[#F8FAFC] text-[#0F172A]">
 
   <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-[rgba(248,250,252,.88)] backdrop-blur-md border-b border-slate-200/80 transition-shadow duration-300">
-    <div class="max-w-[1100px] mx-auto px-6 py-[.9rem] flex items-center gap-8">
-      <span class="font-serif font-black text-xl text-[#0F172A] mr-auto">Sakib<span class="text-blue-600">.</span></span>
-      <div id="navLinks" class="hidden md:flex gap-8">
-        <a href="#about"      class="nav-link relative font-medium text-sm text-[#64748B] hover:text-blue-600 transition-colors duration-200">About</a>
-        <a href="#skills"     class="nav-link relative font-medium text-sm text-[#64748B] hover:text-blue-600 transition-colors duration-200">Skills</a>
-        <a href="#experience" class="nav-link relative font-medium text-sm text-[#64748B] hover:text-blue-600 transition-colors duration-200">Experience</a>
-        <a href="#project"    class="nav-link relative font-medium text-sm text-[#64748B] hover:text-blue-600 transition-colors duration-200">Project</a>
-        <a href="#education"  class="nav-link relative font-medium text-sm text-[#64748B] hover:text-blue-600 transition-colors duration-200">Education</a>
-        <a href="#contact"    class="nav-link relative font-medium text-sm text-[#64748B] hover:text-blue-600 transition-colors duration-200">Contact</a>
+ <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 pt-4 px-4 md:px-8">
+    <!-- Floating pill container -->
+    <div class="nav-pill max-w-[1080px] mx-auto h-14 flex items-center justify-between px-5 rounded-2xl border border-slate-200/60 bg-white/80 backdrop-blur-md transition-all duration-300">
+
+      <!-- Logo -->
+      <a href="#hero" class="font-serif font-black text-[1.2rem] text-[#0F172A] hover:text-blue-600 transition-colors duration-200 flex items-center gap-0.5 select-none">
+        Sakib<span class="nav-dot"></span>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-6">
+        <a href="#about"      class="smart-link">About</a>
+        <a href="#skills"     class="smart-link">Skills</a>
+        <a href="#experience" class="smart-link">Experience</a>
+        <a href="#project"    class="smart-link">Project</a>
+        <a href="#education"  class="smart-link">Education</a>
+        <a href="#contact"    class="smart-link">Contact</a>
       </div>
-      <a href="mailto:sakib@example.com" class="hidden md:inline-block bg-blue-600 text-white text-sm font-semibold px-5 py-2 rounded-full hover:opacity-90 hover:-translate-y-px transition-all duration-200">Hire Me</a>
-      <button id="menuBtn" class="md:hidden flex flex-col gap-[5px] bg-transparent border-none cursor-pointer p-1" aria-label="Toggle menu">
-        <span class="block w-[22px] h-[2px] bg-[#0F172A] rounded transition-all duration-300"></span>
-        <span class="block w-[22px] h-[2px] bg-[#0F172A] rounded transition-all duration-300"></span>
-        <span class="block w-[22px] h-[2px] bg-[#0F172A] rounded transition-all duration-300"></span>
-      </button>
+
+      <!-- CTA + hamburger -->
+      <div class="flex items-center gap-3">
+        <a href="mailto:sakib@example.com"
+           class="hidden md:inline-flex items-center gap-1.5 bg-[#0F172A] text-white text-sm font-semibold px-4 py-2 rounded-xl hover:bg-blue-600 transition-colors duration-200">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Hire Me
+        </a>
+        <button id="menuBtn" class="md:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-lg hover:bg-slate-100 transition-colors duration-200 border-none bg-transparent cursor-pointer" aria-label="Toggle menu">
+          <span id="bar1" class="block w-[18px] h-[1.5px] bg-[#0F172A] rounded-full transition-all duration-300 origin-center"></span>
+          <span id="bar2" class="block w-[18px] h-[1.5px] bg-[#0F172A] rounded-full transition-all duration-300"></span>
+          <span id="bar3" class="block w-[18px] h-[1.5px] bg-[#0F172A] rounded-full transition-all duration-300 origin-center"></span>
+        </button>
+      </div>
     </div>
-    <!-- Mobile menu -->
-    <div id="mobileMenu" class="hidden md:hidden flex-col border-t border-slate-100 bg-[rgba(248,250,252,.97)] backdrop-blur-lg px-6 py-3">
-      <a href="#about"      class="py-[.55rem] border-b border-slate-100 text-sm font-medium text-[#64748B] hover:text-blue-600">About</a>
-      <a href="#skills"     class="py-[.55rem] border-b border-slate-100 text-sm font-medium text-[#64748B] hover:text-blue-600">Skills</a>
-      <a href="#experience" class="py-[.55rem] border-b border-slate-100 text-sm font-medium text-[#64748B] hover:text-blue-600">Experience</a>
-      <a href="#project"    class="py-[.55rem] border-b border-slate-100 text-sm font-medium text-[#64748B] hover:text-blue-600">Project</a>
-      <a href="#education"  class="py-[.55rem] border-b border-slate-100 text-sm font-medium text-[#64748B] hover:text-blue-600">Education</a>
-      <a href="#contact"    class="py-[.55rem] text-sm font-medium text-[#64748B] hover:text-blue-600">Contact</a>
+
+    <!-- Mobile drawer -->
+    <div id="mobileMenu" class="hidden md:hidden max-w-[1080px] mx-auto mt-2 rounded-2xl border border-slate-200/70 bg-white/95 backdrop-blur-md shadow-xl overflow-hidden">
+      <div class="px-5 py-4 flex flex-col gap-0.5">
+        <a href="#about"      class="flex items-center gap-3 py-3 px-3 rounded-xl text-sm font-medium text-[#64748B] hover:text-blue-600 hover:bg-blue-50/60 transition-all duration-150">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-200 flex-shrink-0"></span>About</a>
+        <a href="#skills"     class="flex items-center gap-3 py-3 px-3 rounded-xl text-sm font-medium text-[#64748B] hover:text-blue-600 hover:bg-blue-50/60 transition-all duration-150">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-200 flex-shrink-0"></span>Skills</a>
+        <a href="#experience" class="flex items-center gap-3 py-3 px-3 rounded-xl text-sm font-medium text-[#64748B] hover:text-blue-600 hover:bg-blue-50/60 transition-all duration-150">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-200 flex-shrink-0"></span>Experience</a>
+        <a href="#project"    class="flex items-center gap-3 py-3 px-3 rounded-xl text-sm font-medium text-[#64748B] hover:text-blue-600 hover:bg-blue-50/60 transition-all duration-150">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-200 flex-shrink-0"></span>Project</a>
+        <a href="#education"  class="flex items-center gap-3 py-3 px-3 rounded-xl text-sm font-medium text-[#64748B] hover:text-blue-600 hover:bg-blue-50/60 transition-all duration-150">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-200 flex-shrink-0"></span>Education</a>
+        <a href="#contact"    class="flex items-center gap-3 py-3 px-3 rounded-xl text-sm font-medium text-[#64748B] hover:text-blue-600 hover:bg-blue-50/60 transition-all duration-150">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-200 flex-shrink-0"></span>Contact</a>
+        <div class="h-px bg-slate-100 my-2"></div>
+        <a href="mailto:sakib@example.com"
+           class="flex items-center justify-center gap-2 bg-[#0F172A] text-white text-sm font-semibold py-3 rounded-xl hover:bg-blue-600 transition-colors duration-200">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Hire Me
+        </a>
+      </div>
     </div>
   </nav>
+
+
 
   <!-- ═══════════════════════════════ HERO ══════════════════════════════ -->
   <section id="hero" class="relative min-h-screen flex items-center bg-[#060d1f] overflow-hidden">
