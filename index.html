@@ -1,151 +1,758 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakib Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mohammad Sakib Hossen — Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"DM Sans"', 'sans-serif'],
+          },
+          colors: {
+            blue: { DEFAULT: '#2563EB', light: '#3B82F6', pale: '#DBEAFE' },
+            dark: '#0F172A',
+            mid:  '#1E293B',
+            muted:'#64748B',
+            light:'#F8FAFC',
+            amber:{ DEFAULT:'#D97706', pale:'#FEF3C7' },
+            green:{ DEFAULT:'#059669', pale:'#ECFDF5' },
+            purple:{ DEFAULT:'#7C3AED', pale:'#FDF4FF' },
+          },
+          keyframes: {
+            spinRing: { to:{ transform:'rotate(360deg)' } },
+            floatY:   { '0%,100%':{ transform:'translateY(0)' }, '50%':{ transform:'translateY(-8px)' } },
+            fadeSlideRight: { from:{ opacity:'0', transform:'translateX(-40px)' }, to:{ opacity:'1', transform:'translateX(0)' } },
+            fadeSlideLeft:  { from:{ opacity:'0', transform:'translateX(40px)' },  to:{ opacity:'1', transform:'translateX(0)' } },
+            fadeSlideUp:    { from:{ opacity:'0', transform:'translateY(30px)' },  to:{ opacity:'1', transform:'translateY(0)' } },
+            blink:          { '0%,100%':{ opacity:'1' }, '50%':{ opacity:'0' } },
+            pulse2:         { '0%,100%':{ transform:'scale(1)', opacity:'.7' }, '50%':{ transform:'scale(1.4)', opacity:'1' } },
+          },
+          animation: {
+            spinRing:        'spinRing 7s linear infinite',
+            floatY:          'floatY 3s ease-in-out infinite',
+            floatYDelay:     'floatY 3s ease-in-out 1.5s infinite',
+            fadeSlideRight:  'fadeSlideRight .9s ease .2s both',
+            fadeSlideLeft:   'fadeSlideLeft .9s ease .4s both',
+            fadeSlideUp:     'fadeSlideUp .9s ease .6s both',
+            blink:           'blink 1s step-end infinite',
+            pulse2:          'pulse2 2s ease-in-out infinite',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+    a    { text-decoration: none; color: inherit; }
+
+    /* Spinning conic ring */
+    .profile-ring-outer::before {
+      content: '';
+      position: absolute; inset: -7px; border-radius: 50%;
+      background: conic-gradient(from 0deg, #2563EB 0%, #60A5FA 35%, #e0f2fe 60%, #2563EB 100%);
+      animation: spinRing 7s linear infinite; z-index: 0;
+    }
+    .profile-ring-outer::after {
+      content: ''; position: absolute; inset: -3px;
+      border-radius: 50%; background: #0d1b3e; z-index: 1;
+    }
+
+    /* Skill card top-bar reveal */
+    .skill-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #2563EB, #60A5FA);
+      transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+    }
+    .skill-card:hover::before { transform: scaleX(1); }
+
+    /* Nav active link underline */
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 2px; background: #2563EB; transition: width .3s ease;
+    }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    /* Scroll fade-up */
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* Timeline vertical line */
+    .timeline::before {
+      content: ''; position: absolute; left: 22px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, #2563EB, #BFDBFE);
+    }
+
+    /* Scroll hint line animation */
+    @keyframes scrollLine { 0%{height:0;opacity:1} 80%{height:44px;opacity:1} 100%{height:44px;opacity:0} }
+    .scroll-line-anim { animation: scrollLine 2s ease-in-out infinite; }
+
+    /* Typed cursor */
+    .typed-cursor { display: inline-block; animation: blink 1s step-end infinite; }
+  </style>
 </head>
-<body>
-    <section>
-        <article class="title">
-            <h1>Mohammad <span class="orange-highlight">SAKIB</span> Hossen Portfolio</h1>
-        </article>
-    </section>
+<body class="bg-[#F8FAFC] text-[#0F172A]">
 
-    <section class="top-banner section">
-        <article class="half-width">
-            <h3 class="orange-highlight">World Class Professional Web Developer</h3>
-            <p>My career goal is to thrive in a reputable organization where I can collaborate with talented professionals, allowing me to harness my creativity and innovative thinking. I am dedicated to making meaningful contributions through hard work, sincerity, and a strong commitment to the company's success, forming the foundation of my professional journey.</p>
-            <a title="Click Here To Hire Me" class="link-button" target="_blank" href="https://www.linkedin.com/in/mohammad-sakib-b3a949245/">HIRE ME</a>
-        </article>
-        <article class="half-width">
-            <img src="images/Sakib-bhai-2.png" alt="">
-        </article>
-    </section>
+  <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-[rgba(248,250,252,.88)] backdrop-blur-md border-b border-slate-200/80 transition-shadow duration-300">
+    <div class="max-w-[1100px] mx-auto px-6 py-[.9rem] flex items-center gap-8">
+      <span class="font-serif font-black text-xl text-[#0F172A] mr-auto">Sakib<span class="text-blue-600">.</span></span>
+      <div id="navLinks" class="hidden md:flex gap-8">
+        <a href="#about"      class="nav-link relative font-medium text-sm text-[#64748B] hover:text-blue-600 transition-colors duration-200">About</a>
+        <a href="#skills"     class="nav-link relative font-medium text-sm text-[#64748B] hover:text-blue-600 transition-colors duration-200">Skills</a>
+        <a href="#experience" class="nav-link relative font-medium text-sm text-[#64748B] hover:text-blue-600 transition-colors duration-200">Experience</a>
+        <a href="#project"    class="nav-link relative font-medium text-sm text-[#64748B] hover:text-blue-600 transition-colors duration-200">Project</a>
+        <a href="#education"  class="nav-link relative font-medium text-sm text-[#64748B] hover:text-blue-600 transition-colors duration-200">Education</a>
+        <a href="#contact"    class="nav-link relative font-medium text-sm text-[#64748B] hover:text-blue-600 transition-colors duration-200">Contact</a>
+      </div>
+      <a href="mailto:sakib@example.com" class="hidden md:inline-block bg-blue-600 text-white text-sm font-semibold px-5 py-2 rounded-full hover:opacity-90 hover:-translate-y-px transition-all duration-200">Hire Me</a>
+      <button id="menuBtn" class="md:hidden flex flex-col gap-[5px] bg-transparent border-none cursor-pointer p-1" aria-label="Toggle menu">
+        <span class="block w-[22px] h-[2px] bg-[#0F172A] rounded transition-all duration-300"></span>
+        <span class="block w-[22px] h-[2px] bg-[#0F172A] rounded transition-all duration-300"></span>
+        <span class="block w-[22px] h-[2px] bg-[#0F172A] rounded transition-all duration-300"></span>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden flex-col border-t border-slate-100 bg-[rgba(248,250,252,.97)] backdrop-blur-lg px-6 py-3">
+      <a href="#about"      class="py-[.55rem] border-b border-slate-100 text-sm font-medium text-[#64748B] hover:text-blue-600">About</a>
+      <a href="#skills"     class="py-[.55rem] border-b border-slate-100 text-sm font-medium text-[#64748B] hover:text-blue-600">Skills</a>
+      <a href="#experience" class="py-[.55rem] border-b border-slate-100 text-sm font-medium text-[#64748B] hover:text-blue-600">Experience</a>
+      <a href="#project"    class="py-[.55rem] border-b border-slate-100 text-sm font-medium text-[#64748B] hover:text-blue-600">Project</a>
+      <a href="#education"  class="py-[.55rem] border-b border-slate-100 text-sm font-medium text-[#64748B] hover:text-blue-600">Education</a>
+      <a href="#contact"    class="py-[.55rem] text-sm font-medium text-[#64748B] hover:text-blue-600">Contact</a>
+    </div>
+  </nav>
 
-    <section class="dream-area section">
-        <article class="half-width">
-            <img src="images/Sakib-bhai-1.jpg" alt="">
-        </article>
-        <article class="half-width">
-            <h2 class="blue-highlight">Dream Big</h2>
-            <h3 class="orange-highlight">Become a web developer </h3>
-            <p>A software engineer's primary goal is to continuously improve their technical skills, solve complex problems, and contribute to the development of efficient, scalable systems. This involves mastering relevant programming languages, frameworks, and tools, while also staying up-to-date with evolving technologies.</p>
-            <a title="Click Here To Download My Resume" class="link-button" target="_blank" href="https://novoresume.com/editor/resume/e69b50c0-e28c-11ec-abd7-f920a8848d20">DOWNLOAD RESUME</a>
-        </article>
-    </section>
+  <!-- ═══════════════════════════════ HERO ══════════════════════════════ -->
+  <section id="hero" class="relative min-h-screen flex items-center bg-[#060d1f] overflow-hidden">
+    <canvas id="heroCanvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+    <!-- Overlays -->
+    <div class="absolute inset-0 z-[1]" style="background:radial-gradient(ellipse 80% 60% at 60% 40%, rgba(37,99,235,.18) 0%, transparent 70%)"></div>
+    <div class="absolute inset-0 z-[1]" style="background:linear-gradient(to bottom, transparent 60%, rgba(6,13,31,.9) 100%)"></div>
 
-    <section>
-        <h2 class="text-height">Skills</h2>
-    </section>
+    <div class="relative z-[2] max-w-[1100px] mx-auto px-6 pt-28 pb-20 w-full flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
 
-    <section class="experience-area section">
-        <article id="full-stack" class="half-width2 single-experience">
-            <p>Strength : Mathematics, Data Manipulation, Analytical & Critical Thinking Skills, Self-confidence and Hardworking, Creative Thinking, Sense of good Organizational Behavior, Quick Learner</p>
-        </article>
-        <article id="full-stack" class="half-width2 single-experience">
-            <p>Programming : ReactJS, JavaScript, Html, CSS, C</p>
-        </article>
-        <article id="full-stack" class="half-width2 single-experience">
-            <p>Software : Logisim, Multisim, Proteus, Cadence</p>
-        </article>
-        <article id="full-stack" class="half-width2 single-experience">
-            <p>Microsoft Office : Microsoft Word, Microsoft Power Point, Microsoft Excel, Microsoft OneNote</p>
-        </article>
-    </section>
+      <!-- Text (left) -->
+      <!-- moved below, text comes second in DOM but order swapped via order classes -->
 
-    <section>
-        <h2 class="text-height">Education</h2>
-    </section>
-    
-    <section class="experience-area section">
-        <article id="full-stack" class="half-width1 single-experience">
-            <h2 class="blue-highlight">B.Sc in Computer Science Engineering (CSE)</h2>
-            <h3 class="orange-highlight">North South University</h3>
-            <p>09/2014 - 12/2019</p>
-            <p>CGPA - 2.70</p>
-        </article>
-        <article id="full-stack" class="half-width1 single-experience">
-            <h2 class="blue-highlight">Higher Secondary School Certificate (Science)</h2>
-            <h3 class="orange-highlight">Cumilla Cantonment College</h3>
-            <p>04/2011 - 06/2013</p>
-            <p>CGPA - 4.10</p>
-        </article>
-        <article id="full-stack" class="half-width1 single-experience">
-            <h2 class="blue-highlight">Secondary School Certificate (Science)</h2>
-            <h3 class="orange-highlight">Cumilla Cantonment High School</h3>
-            <p>01/2001 - 03/2011</p>
-            <p>CGPA - 4.88</p>
-        </article>
-    </section>
+      <!-- Profile (right) -->
+      <div class="profile-ring-outer relative flex-shrink-0 w-[200px] h-[200px] md:w-[300px] md:h-[300px] rounded-full animate-fadeSlideRight order-first md:order-last">
+        <div class="absolute inset-0 z-[2] rounded-full overflow-hidden">
+          <img
+            src="https://i.ibb.co.com/kVbdDT56/Media.jpg"
+            alt="Mohammad Sakib Hossen"
+            class="w-full h-full object-cover rounded-full block"
+          />
+        </div>
+        <!-- Floating badges -->
+        <div class="animate-floatY absolute -bottom-1 -right-8 md:-right-14 text-[.7rem] font-bold px-3 py-[.35rem] rounded-full whitespace-nowrap z-10 backdrop-blur-sm"
+             style="background:rgba(37,99,235,.25);border:1px solid rgba(96,165,250,.4);color:#93C5FD">
+          ⚡ Front-End Dev
+        </div>
+        <div class="animate-floatYDelay absolute top-2 -right-6 md:-right-10 text-[.7rem] font-bold px-3 py-[.35rem] rounded-full whitespace-nowrap z-10 backdrop-blur-sm"
+             style="background:rgba(217,119,6,.2);border:1px solid rgba(251,191,36,.35);color:#FCD34D">
+          🔍 SEO Expert
+        </div>
+      </div>
 
-    <section>
-        <h2 class="text-height">Work Experiences</h2>
-    </section>
+      <!-- Text (left on desktop) -->
+      <div class="text-center md:text-left animate-fadeSlideLeft order-last md:order-first">
+        <div class="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 mb-5 px-3 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse2 inline-block"></span>
+          Available for opportunities
+        </div>
+        <h1 class="font-serif font-black text-white leading-[1.05] mb-4" style="font-size:clamp(2.4rem,5vw,3.8rem)">
+          <span class="block">Mohammad</span>
+          <span class="text-blue-400 not-italic">Sakib </span><em>Hossen</em>
+        </h1>
+        <p id="heroSub" class="text-blue-300 font-semibold text-base md:text-lg mb-4 min-h-[1.8em]">
+          <span id="typedText">Front-End Developer</span><span class="typed-cursor text-blue-400">|</span>
+        </p>
+        <p class="text-white/55 leading-relaxed text-sm md:text-base max-w-md mx-auto md:mx-0 mb-8">
+          Front-End Engineer skilled in HTML5, CSS3, Tailwind CSS, JavaScript &amp; ReactJS.
+          Passionate about crafting creative solutions that drive results.
+        </p>
+        <div class="flex flex-wrap gap-3 justify-center md:justify-start mb-10">
+          <a href="#contact"    class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 hover:-translate-y-0.5 transition-all duration-200 text-sm">Get In Touch</a>
+          <a href="#experience" class="text-white font-semibold px-6 py-3 rounded-full border border-white/25 hover:bg-white/10 transition-all duration-200 text-sm">View Work</a>
+        </div>
+        <div class="flex items-center gap-6 justify-center md:justify-start">
+          <div class="text-center"><div class="text-white font-black text-2xl font-serif">3+</div><div class="text-white/45 text-xs mt-0.5">Years Exp.</div></div>
+          <div class="w-px h-8 bg-white/15"></div>
+          <div class="text-center"><div class="text-white font-black text-2xl font-serif">6+</div><div class="text-white/45 text-xs mt-0.5">Technologies</div></div>
+          <div class="w-px h-8 bg-white/15"></div>
+          <div class="text-center"><div class="text-white font-black text-2xl font-serif">3</div><div class="text-white/45 text-xs mt-0.5">Roles Held</div></div>
+        </div>
+      </div>
+    </div>
 
-    <section class="experience-area section">
-        <article id="full-stack" class="half-width1 single-experience">
-            <h2 class="blue-highlight">Senior SEO Executive</h2>
-            <h3 class="orange-highlight">08/2024 - Present | Aan-Nahl Software</h3>
-            <ul class="text-color">
-                <li>Monitor Brand Mentions and Online Reviews.</li>
-                <li>Optimize Positive Content for Search Engines.</li>
-                <li>Manage and Mitigate Negative Content.</li>
-                <li>Engage with Customers and Stakeholders Online.</li>
-                <li>Develop Long-Term Online Reputation Strategies.</li>
+    <!-- Scroll hint -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/30 text-xs tracking-widest uppercase">
+      <div class="w-px overflow-hidden h-11 relative">
+        <div class="scroll-line-anim absolute top-0 left-0 w-full bg-white/40"></div>
+      </div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ ABOUT ════════════════════════════ -->
+  <section id="about" class="py-24 bg-white">
+    <div class="max-w-[1100px] mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+        <div class="fade-up">
+          <div class="inline-flex items-center gap-2.5 text-[.72rem] font-bold tracking-[.18em] uppercase text-blue-600 mb-2.5 before:content-[''] before:w-[22px] before:h-[2px] before:bg-blue-600">
+            Who I Am
+          </div>
+          <h2 class="font-serif font-black text-[#0F172A] leading-tight" style="font-size:clamp(2rem,3.5vw,2.8rem)">Crafting Digital<br>Experiences</h2>
+          <p class="text-[#64748B] text-[1.025rem] leading-[1.8] mt-6">
+            Hi, I'm Sakib — a Front-End Engineer who blends clean code with strategic SEO insight.
+            I bring both technical development skills and deep understanding of online reputation
+            management to every project I take on.
+          </p>
+          <p class="text-[#64748B] text-[1.025rem] leading-[1.8] mt-4">
+            Based in Dhaka, Bangladesh, I collaborate with innovative teams to deliver
+            results-driven digital solutions that make a lasting impression.
+          </p>
+          <div class="flex flex-wrap gap-3 mt-8">
+            <div class="inline-flex items-center gap-1.5 text-xs font-medium text-[#64748B] border border-slate-200 bg-[#F8FAFC] rounded-full px-3 py-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Dhaka, Bangladesh
+            </div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-medium text-[#64748B] border border-slate-200 bg-[#F8FAFC] rounded-full px-3 py-1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              CSE Graduate, North South University
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 fade-up">
+          <div class="rounded-2xl bg-blue-50 p-6 flex flex-col gap-1 hover:-translate-y-1 transition-transform duration-300">
+            <span class="font-black text-xl text-blue-700">HTML5</span>
+            <small class="text-blue-500 text-xs font-semibold uppercase tracking-wide">Markup</small>
+          </div>
+          <div class="rounded-2xl bg-amber-50 p-6 flex flex-col gap-1 hover:-translate-y-1 transition-transform duration-300">
+            <span class="font-black text-xl text-amber-700">CSS3</span>
+            <small class="text-amber-500 text-xs font-semibold uppercase tracking-wide">Styling</small>
+          </div>
+          <div class="rounded-2xl bg-green-50 p-6 flex flex-col gap-1 hover:-translate-y-1 transition-transform duration-300">
+            <span class="font-black text-xl text-green-700">React</span>
+            <small class="text-green-500 text-xs font-semibold uppercase tracking-wide">Framework</small>
+          </div>
+          <div class="rounded-2xl bg-purple-50 p-6 flex flex-col gap-1 hover:-translate-y-1 transition-transform duration-300">
+            <span class="font-black text-xl text-purple-700">SEO</span>
+            <small class="text-purple-400 text-xs font-semibold uppercase tracking-wide">ORM</small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ SKILLS ═══════════════════════════ -->
+  <section id="skills" class="py-24 bg-[#F8FAFC]">
+    <div class="max-w-[1100px] mx-auto px-6">
+      <div class="text-center mb-14 fade-up">
+        <div class="inline-flex items-center justify-center gap-2.5 text-[.72rem] font-bold tracking-[.18em] uppercase text-blue-600 mb-2.5 before:content-[''] before:w-[22px] before:h-[2px] before:bg-blue-600">
+          What I Do
+        </div>
+        <h2 class="font-serif font-black text-[#0F172A] leading-tight" style="font-size:clamp(2rem,3.5vw,2.8rem)">Skills &amp; Expertise</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Dev card -->
+        <div class="skill-card relative bg-white border border-slate-200 rounded-2xl p-7 overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_20px_48px_rgba(37,99,235,.12)] transition-all duration-300 fade-up">
+          <div class="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3 class="font-bold text-[1.05rem] mb-2">Programming &amp; Development</h3>
+          <p class="text-[#64748B] text-sm mb-4">Frontend technologies for building modern web experiences</p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full bg-blue-50 text-blue-700">HTML5</span>
+            <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full bg-blue-50 text-blue-700">CSS3</span>
+            <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full bg-blue-50 text-blue-700">Tailwind CSS</span>
+            <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full bg-blue-50 text-blue-700">JavaScript</span>
+            <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full bg-blue-50 text-blue-700">ReactJS</span>
+            <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full bg-blue-50 text-blue-700">GitHub</span>
+          </div>
+        </div>
+
+        <!-- SEO card -->
+        <div class="skill-card relative bg-white border border-slate-200 rounded-2xl p-7 overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_20px_48px_rgba(37,99,235,.12)] transition-all duration-300 fade-up">
+          <div class="w-11 h-11 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3 class="font-bold text-[1.05rem] mb-2">Digital Marketing &amp; SEO</h3>
+          <p class="text-[#64748B] text-sm mb-4">Online reputation management and organic growth strategies</p>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full bg-amber-50 text-amber-700">SEO</span>
+            <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full bg-amber-50 text-amber-700">ORM</span>
+            <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full bg-amber-50 text-amber-700">Zoho CRM</span>
+            <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full bg-amber-50 text-amber-700">Microsoft Office</span>
+            <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full bg-amber-50 text-amber-700">WordPress</span>
+            <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full bg-amber-50 text-amber-700">Link Building</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ EXPERIENCE ═════════════════════════ -->
+  <section id="experience" class="py-24 bg-white">
+    <div class="max-w-[1100px] mx-auto px-6">
+      <div class="fade-up mb-12">
+        <div class="inline-flex items-center gap-2.5 text-[.72rem] font-bold tracking-[.18em] uppercase text-blue-600 mb-2.5 before:content-[''] before:w-[22px] before:h-[2px] before:bg-blue-600">
+          Career Path
+        </div>
+        <h2 class="font-serif font-black text-[#0F172A] leading-tight" style="font-size:clamp(2rem,3.5vw,2.8rem)">Work Experience</h2>
+      </div>
+
+      <div class="timeline relative">
+
+        <!-- Item 1 -->
+        <div class="relative pl-16 mb-10 fade-up">
+          <div class="absolute left-[14px] top-2 w-[18px] h-[18px] rounded-full bg-blue-600 border-[3px] border-white shadow-[0_0_0_3px_#DBEAFE] z-10"></div>
+          <div class="bg-white border border-slate-200 rounded-2xl p-7 hover:translate-x-1.5 hover:shadow-[0_8px_32px_rgba(15,23,42,.08)] transition-all duration-300">
+            <div class="flex flex-wrap justify-between items-start gap-4 mb-4">
+              <div>
+                <h3 class="font-bold text-[1.1rem]">Senior SEO Executive (ORM)</h3>
+                <p class="text-blue-600 font-medium text-[.9rem] mt-0.5">Aan-Nahl</p>
+              </div>
+              <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full whitespace-nowrap">08/2024 — Present</span>
+            </div>
+            <ul class="flex flex-col gap-2">
+              <li class="text-[#64748B] text-[.9rem] pl-4 relative before:content-['▹'] before:absolute before:left-0 before:text-blue-500">Led ORM-driven SEO strategies to enhance brand visibility.</li>
+              <li class="text-[#64748B] text-[.9rem] pl-4 relative before:content-['▹'] before:absolute before:left-0 before:text-blue-500">Built quality backlinks to improve rankings.</li>
+              <li class="text-[#64748B] text-[.9rem] pl-4 relative before:content-['▹'] before:absolute before:left-0 before:text-blue-500">Customized WordPress features and fixed dead links.</li>
+              <li class="text-[#64748B] text-[.9rem] pl-4 relative before:content-['▹'] before:absolute before:left-0 before:text-blue-500">Guided the SEO team and supported website growth.</li>
             </ul>
-        </article>
-        <article id="full-stack" class="half-width1 single-experience">
-            <h2 class="blue-highlight">Assistant Account Manager</h2>
-            <h3 class="orange-highlight">08/2023 - 07/2024 | Aan-Nahl Software</h3>
-            <ul class="text-color">
-                <li>Client Onboarding and Strategy Development.</li>
-                <li>Social Media Monitoring and Engagement.</li>
-                <li>Review and Testimonial Acquisition.</li>
-                <li>Competitor Analysis.</li>
-                <li>Content Optimization and SEO Support.</li>
-            </ul>
-        </article>
-        <article id="full-stack" class="half-width1 single-experience">
-            <h2 class="blue-highlight">Senior Executive</h2>
-            <h3 class="orange-highlight">02/2022 - 07/2023 | Aan-Nahl Software</h3>
-            <ul class="text-color">
-                <li>Develop and Implement ORM Strategy.</li>
-                <li>Monitor Online Presence and Feedback.</li>
-                <li>Engage with Customers and Stakeholders.</li>
-                <li>Crisis Management and Damage Control.</li>
-                <li>SEO and Content Management for Reputation.</li>
-            </ul>
-        </article>
-    </section>
+          </div>
+        </div>
 
-    <section class="experience-area section">
-        <article id="full-stack" class="half-width1 single-experience">
-            <h2 class="blue-highlight">CRM Executive</h2>
-            <h3 class="orange-highlight">07/2022 - 01/2023 | Aan-Nahl Software</h3>
-            <ul class="text-color">
-                <li>Proficiency in CRM software (Zoho).</li>
-                <li>Develop and execute reputation management campaigns within ZOHO CRM.</li>
-                <li>Monitor and Track Client Interactions.</li>
-                <li>Data analysis and reporting capabilities.</li>
-                <li>Client Sentiment Analysis.</li>
+        <!-- Item 2 -->
+        <div class="relative pl-16 mb-10 fade-up">
+          <div class="absolute left-[14px] top-2 w-[18px] h-[18px] rounded-full bg-blue-600 border-[3px] border-white shadow-[0_0_0_3px_#DBEAFE] z-10"></div>
+          <div class="bg-white border border-slate-200 rounded-2xl p-7 hover:translate-x-1.5 hover:shadow-[0_8px_32px_rgba(15,23,42,.08)] transition-all duration-300">
+            <div class="flex flex-wrap justify-between items-start gap-4 mb-4">
+              <div>
+                <h3 class="font-bold text-[1.1rem]">Assistant Account Manager</h3>
+                <p class="text-blue-600 font-medium text-[.9rem] mt-0.5">Aan-Nahl</p>
+              </div>
+              <span class="text-xs font-semibold text-[#64748B] bg-[#F8FAFC] px-3 py-1.5 rounded-full whitespace-nowrap">06/2023 — 07/2024</span>
+            </div>
+            <ul class="flex flex-col gap-2">
+              <li class="text-[#64748B] text-[.9rem] pl-4 relative before:content-['▹'] before:absolute before:left-0 before:text-blue-500">Prepared and delivered monthly client reports.</li>
+              <li class="text-[#64748B] text-[.9rem] pl-4 relative before:content-['▹'] before:absolute before:left-0 before:text-blue-500">Tracked and updated digital assets regularly.</li>
+              <li class="text-[#64748B] text-[.9rem] pl-4 relative before:content-['▹'] before:absolute before:left-0 before:text-blue-500">Coordinated with teams to ensure accurate client information.</li>
             </ul>
-        </article>
-        <article id="full-stack" class="half-width1 single-experience">
-            <h2 class="blue-highlight">On Call</h2>
-            <h3 class="orange-highlight">02/2021 - 04/2021 | Alliance Computer Limited</h3>
-            <ul class="text-color">
-                <li>Experience in this line involves Networking.</li>
-                <li>Strong communication, interpersonal, and problem-solving skills.</li>
-                <li>Familiar with Microsoft Office, Data entry.</li>
-            </ul>
-        </article>
-    </section>
+          </div>
+        </div>
 
-    <footer>
-        <p>Copyrights © 2026. <span class="orange-highlight">Mohammad Sakib Hossen</span> All Rights Reserved.</p>
-    </footer>
+        <!-- Item 3 -->
+        <div class="relative pl-16 mb-10 fade-up">
+          <div class="absolute left-[14px] top-2 w-[18px] h-[18px] rounded-full bg-blue-600 border-[3px] border-white shadow-[0_0_0_3px_#DBEAFE] z-10"></div>
+          <div class="bg-white border border-slate-200 rounded-2xl p-7 hover:translate-x-1.5 hover:shadow-[0_8px_32px_rgba(15,23,42,.08)] transition-all duration-300">
+            <div class="flex flex-wrap justify-between items-start gap-4 mb-4">
+              <div>
+                <h3 class="font-bold text-[1.1rem]">CRM Executive</h3>
+                <p class="text-blue-600 font-medium text-[.9rem] mt-0.5">Aan-Nahl</p>
+              </div>
+              <span class="text-xs font-semibold text-[#64748B] bg-[#F8FAFC] px-3 py-1.5 rounded-full whitespace-nowrap">07/2022 — 05/2023</span>
+            </div>
+            <ul class="flex flex-col gap-2">
+              <li class="text-[#64748B] text-[.9rem] pl-4 relative before:content-['▹'] before:absolute before:left-0 before:text-blue-500">Maintained accurate client and project data in Zoho CRM.</li>
+              <li class="text-[#64748B] text-[.9rem] pl-4 relative before:content-['▹'] before:absolute before:left-0 before:text-blue-500">Streamlined CRM processes to improve efficiency.</li>
+              <li class="text-[#64748B] text-[.9rem] pl-4 relative before:content-['▹'] before:absolute before:left-0 before:text-blue-500">Assisted teams with CRM support and routine updates.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ PROJECT ══════════════════════════ -->
+  <section id="project" class="py-24 bg-[#F8FAFC]">
+    <div class="max-w-[1100px] mx-auto px-6">
+      <div class="fade-up mb-12">
+        <div class="inline-flex items-center gap-2.5 text-[.72rem] font-bold tracking-[.18em] uppercase text-blue-600 mb-2.5 before:content-[''] before:w-[22px] before:h-[2px] before:bg-blue-600">
+          What I've Built
+        </div>
+        <h2 class="font-serif font-black text-[#0F172A] leading-tight" style="font-size:clamp(2rem,3.5vw,2.8rem)">Featured Project</h2>
+      </div>
+
+      <div class="fade-up relative max-w-[680px] mt-8 rounded-[20px] overflow-hidden border border-blue-900/25 hover:-translate-y-1.5 transition-transform duration-300"
+           style="background:linear-gradient(135deg,#060d1f,#0f2460)">
+        <div class="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-[60px]" style="background:rgba(37,99,235,.35)"></div>
+        <div class="flex flex-col sm:flex-row gap-6 p-9 relative">
+          <div class="w-14 h-14 rounded-[14px] flex items-center justify-center text-2xl flex-shrink-0" style="background:rgba(37,99,235,.25)">🏥</div>
+          <div>
+            <h3 class="font-serif font-bold text-white text-[1.35rem] mb-1">Smart Health Monitoring System</h3>
+            <p class="text-blue-300 text-[.82rem] font-semibold mb-4">04/2019 — 12/2019</p>
+            <p class="text-white/55 text-[.9rem] leading-[1.75]">
+              Enables hospitals and homes in Bangladesh to efficiently track temperature, ECG,
+              heart rate, and blood pressure, supporting improved medical diagnostics and patient care.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mt-5">
+              <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full border" style="background:rgba(37,99,235,.18);color:#93C5FD;border-color:rgba(96,165,250,.25)">IoT</span>
+              <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full border" style="background:rgba(37,99,235,.18);color:#93C5FD;border-color:rgba(96,165,250,.25)">Health Tech</span>
+              <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full border" style="background:rgba(37,99,235,.18);color:#93C5FD;border-color:rgba(96,165,250,.25)">Bangladesh</span>
+              <span class="text-[.78rem] font-semibold px-3 py-1 rounded-full border" style="background:rgba(37,99,235,.18);color:#93C5FD;border-color:rgba(96,165,250,.25)">Final Year Project</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ EDUCATION ══════════════════════════ -->
+  <section id="education" class="py-24 bg-white">
+    <div class="max-w-[1100px] mx-auto px-6">
+      <div class="fade-up mb-10">
+        <div class="inline-flex items-center gap-2.5 text-[.72rem] font-bold tracking-[.18em] uppercase text-blue-600 mb-2.5 before:content-[''] before:w-[22px] before:h-[2px] before:bg-blue-600">
+          Academic Background
+        </div>
+        <h2 class="font-serif font-black text-[#0F172A] leading-tight" style="font-size:clamp(2rem,3.5vw,2.8rem)">Education</h2>
+      </div>
+
+      <div class="flex flex-col gap-4 mt-8">
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 flex items-start gap-5 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(15,23,42,.08)] transition-all duration-300 fade-up">
+          <div class="w-[46px] h-[46px] rounded-xl bg-blue-50 flex items-center justify-center text-xl flex-shrink-0">🎓</div>
+          <div class="flex-1">
+            <div class="flex flex-wrap justify-between items-start gap-3">
+              <div>
+                <h3 class="font-bold text-base">B.Sc in Computer Science Engineering (CSE)</h3>
+                <p class="text-[#64748B] text-[.875rem] mt-0.5">North South University</p>
+              </div>
+              <div class="flex flex-col items-end gap-1.5 flex-shrink-0">
+                <span class="text-[#64748B] text-[.78rem] whitespace-nowrap">2014 — 2019</span>
+                <span class="text-[.73rem] font-bold text-green-700 bg-green-50 border border-green-200 px-2.5 py-0.5 rounded-full">CGPA: 2.70</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 flex items-start gap-5 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(15,23,42,.08)] transition-all duration-300 fade-up">
+          <div class="w-[46px] h-[46px] rounded-xl bg-blue-50 flex items-center justify-center text-xl flex-shrink-0">📘</div>
+          <div class="flex-1">
+            <div class="flex flex-wrap justify-between items-start gap-3">
+              <div>
+                <h3 class="font-bold text-base">Higher Secondary School Certificate (Science)</h3>
+                <p class="text-[#64748B] text-[.875rem] mt-0.5">Cumilla Cantonment College</p>
+              </div>
+              <div class="flex flex-col items-end gap-1.5 flex-shrink-0">
+                <span class="text-[#64748B] text-[.78rem] whitespace-nowrap">2011 — 2013</span>
+                <span class="text-[.73rem] font-bold text-green-700 bg-green-50 border border-green-200 px-2.5 py-0.5 rounded-full">CGPA: 4.10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 flex items-start gap-5 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(15,23,42,.08)] transition-all duration-300 fade-up">
+          <div class="w-[46px] h-[46px] rounded-xl bg-blue-50 flex items-center justify-center text-xl flex-shrink-0">📗</div>
+          <div class="flex-1">
+            <div class="flex flex-wrap justify-between items-start gap-3">
+              <div>
+                <h3 class="font-bold text-base">Secondary School Certificate (Science)</h3>
+                <p class="text-[#64748B] text-[.875rem] mt-0.5">Cumilla Cantonment High School</p>
+              </div>
+              <div class="flex flex-col items-end gap-1.5 flex-shrink-0">
+                <span class="text-[#64748B] text-[.78rem] whitespace-nowrap">2001 — 2011</span>
+                <span class="text-[.73rem] font-bold text-green-700 bg-green-50 border border-green-200 px-2.5 py-0.5 rounded-full">CGPA: 4.88</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ REFERENCES ═════════════════════════ -->
+  <section class="py-24 bg-[#F8FAFC]">
+    <div class="max-w-[1100px] mx-auto px-6">
+      <div class="fade-up mb-10">
+        <div class="inline-flex items-center gap-2.5 text-[.72rem] font-bold tracking-[.18em] uppercase text-blue-600 mb-2.5 before:content-[''] before:w-[22px] before:h-[2px] before:bg-blue-600">
+          Endorsements
+        </div>
+        <h2 class="font-serif font-black text-[#0F172A] leading-tight" style="font-size:clamp(2rem,3.5vw,2.8rem)">References</h2>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-2xl p-7 flex items-start gap-5 max-w-md mt-8 fade-up">
+        <div class="w-[54px] h-[54px] rounded-[13px] flex items-center justify-center text-white font-extrabold text-[1.05rem] flex-shrink-0"
+             style="background:linear-gradient(135deg,#1D4ED8,#3B82F6)">MY</div>
+        <div>
+          <h3 class="font-bold text-[1.05rem]">Mohammad Abu Yousuf</h3>
+          <p class="text-blue-600 text-[.875rem] font-medium mt-0.5">PHD Professor</p>
+          <p class="text-[#64748B] text-[.8rem] mt-0.5 mb-2">Jahangirnagar University</p>
+          <a href="mailto:yousuf@example.com" class="inline-flex items-center gap-1.5 text-[.83rem] text-[#64748B] hover:text-blue-600 transition-colors">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            yousuf@juniv.edu
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ CONTACT ══════════════════════════ -->
+  <section id="contact" class="py-24 bg-white">
+    <div class="max-w-[1100px] mx-auto px-6">
+      <div class="text-center mb-10 fade-up">
+        <div class="inline-flex items-center justify-center gap-2.5 text-[.72rem] font-bold tracking-[.18em] uppercase text-blue-600 mb-2.5 before:content-[''] before:w-[22px] before:h-[2px] before:bg-blue-600">
+          Get In Touch
+        </div>
+        <h2 class="font-serif font-black text-[#0F172A] leading-tight" style="font-size:clamp(2rem,3.5vw,2.8rem)">Let's Work Together</h2>
+        <p class="text-[#64748B] text-[1.025rem] leading-[1.8] mt-4 max-w-[420px] mx-auto">
+          Whether you have a project in mind or just want to chat — my inbox is always open.
+        </p>
+      </div>
+      <div class="flex flex-col gap-3.5 max-w-[440px] mx-auto mt-8">
+        <a href="tel:+8801685164140" class="flex items-center gap-4 bg-white border border-slate-200 rounded-[14px] px-6 py-5 hover:translate-x-1.5 hover:shadow-[0_8px_32px_rgba(15,23,42,.08)] transition-all duration-300 fade-up">
+          <div class="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center text-[1.1rem] flex-shrink-0">📞</div>
+          <div><small class="text-[#64748B] text-[.72rem] block mb-0.5">Phone</small><strong class="text-[.95rem]">+8801685164140</strong></div>
+        </a>
+        <a href="mailto:sakib@example.com" class="flex items-center gap-4 bg-white border border-slate-200 rounded-[14px] px-6 py-5 hover:translate-x-1.5 hover:shadow-[0_8px_32px_rgba(15,23,42,.08)] transition-all duration-300 fade-up">
+          <div class="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center text-[1.1rem] flex-shrink-0">✉️</div>
+          <div><small class="text-[#64748B] text-[.72rem] block mb-0.5">Email</small><strong class="text-[.95rem]">sakibhossen@email.com</strong></div>
+        </a>
+        <div class="flex items-center gap-4 bg-white border border-slate-200 rounded-[14px] px-6 py-5 fade-up">
+          <div class="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center text-[1.1rem] flex-shrink-0">📍</div>
+          <div><small class="text-[#64748B] text-[.72rem] block mb-0.5">Location</small><strong class="text-[.95rem]">Dhaka, Bangladesh</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class="bg-[#0F172A] text-white/50 py-12 text-center text-[.875rem]">
+    <div class="font-serif font-bold text-[1.15rem] text-white mb-1">Mohammad Sakib Hossen</div>
+    <div>Front-End Developer &amp; Senior SEO Executive</div>
+    <div class="text-[.72rem] opacity-35 mt-4">&copy; 2025 Mohammad Sakib Hossen. All rights reserved.</div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SCRIPTS (particle canvas + profile + nav + scroll + typed)
+  ══════════════════════════════════════════════════════════════════ -->
+  <script>
+  /* ── 1. PARTICLE HERO CANVAS ─────────────────────────────────────── */
+  (function initParticles() {
+    const canvas = document.getElementById('heroCanvas');
+    const ctx    = canvas.getContext('2d');
+    const CONFIG = {
+      particleCount : 130, maxSpeed:0.35, minRadius:1, maxRadius:2.8,
+      connectionDist:130, mouseRadius:160,
+      colors:['#3B82F6','#60A5FA','#93C5FD','#BFDBFE','#ffffff'],
+      bgColor:'#060d1f',
+    };
+    let W, H, mouse={x:-9999,y:-9999}, particles=[], animId;
+
+    function resize() {
+      const hero = document.getElementById('hero');
+      W = canvas.width  = hero.offsetWidth;
+      H = canvas.height = hero.offsetHeight;
+    }
+
+    class Particle {
+      constructor() { this.reset(true); }
+      reset(initial) {
+        this.x=Math.random()*W; this.y=initial?Math.random()*H:-10;
+        this.r=CONFIG.minRadius+Math.random()*(CONFIG.maxRadius-CONFIG.minRadius);
+        this.vx=(Math.random()-.5)*CONFIG.maxSpeed*2;
+        this.vy=(Math.random()-.5)*CONFIG.maxSpeed*2;
+        this.alpha=.2+Math.random()*.65; this.baseAlpha=this.alpha;
+        this.colorIdx=Math.floor(Math.random()*CONFIG.colors.length);
+        this.twinkleSpeed=.008+Math.random()*.015;
+        this.twinkleDir=Math.random()>.5?1:-1;
+      }
+      update() {
+        this.x+=this.vx; this.y+=this.vy;
+        const dx=this.x-mouse.x, dy=this.y-mouse.y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<CONFIG.mouseRadius){const f=(CONFIG.mouseRadius-dist)/CONFIG.mouseRadius;this.x+=dx/dist*f*2.5;this.y+=dy/dist*f*2.5;}
+        this.alpha+=this.twinkleSpeed*this.twinkleDir;
+        if(this.alpha>this.baseAlpha+.3||this.alpha<.1) this.twinkleDir*=-1;
+        if(this.x<-5)this.x=W+5; if(this.x>W+5)this.x=-5;
+        if(this.y<-5)this.y=H+5; if(this.y>H+5)this.y=-5;
+      }
+      draw() {
+        ctx.save(); ctx.globalAlpha=Math.max(0,Math.min(1,this.alpha));
+        ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+        ctx.fillStyle=CONFIG.colors[this.colorIdx]; ctx.fill();
+        if(this.r>1.8){
+          ctx.beginPath(); ctx.arc(this.x,this.y,this.r*2.5,0,Math.PI*2);
+          const g=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r*2.5);
+          g.addColorStop(0,CONFIG.colors[this.colorIdx]+'55'); g.addColorStop(1,'transparent');
+          ctx.fillStyle=g; ctx.fill();
+        }
+        ctx.restore();
+      }
+    }
+
+    function drawConnections(){
+      for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){
+        const a=particles[i],b=particles[j];
+        const d=Math.sqrt((a.x-b.x)**2+(a.y-b.y)**2);
+        if(d<CONFIG.connectionDist){
+          ctx.save(); ctx.globalAlpha=(1-d/CONFIG.connectionDist)*.25;
+          ctx.strokeStyle='#3B82F6'; ctx.lineWidth=.6;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); ctx.restore();
+        }
+      }
+    }
+
+    let shootingStars=[];
+    function spawnShootingStar(){shootingStars.push({x:Math.random()*W,y:Math.random()*H*.5,len:80+Math.random()*80,speed:6+Math.random()*6,alpha:1,angle:Math.PI/5+(Math.random()-.5)*.3});}
+    function updateShootingStars(){
+      shootingStars=shootingStars.filter(s=>s.alpha>0);
+      for(const s of shootingStars){
+        s.x+=Math.cos(s.angle)*s.speed; s.y+=Math.sin(s.angle)*s.speed; s.alpha-=.022;
+        ctx.save(); ctx.globalAlpha=Math.max(0,s.alpha);
+        const g=ctx.createLinearGradient(s.x,s.y,s.x-Math.cos(s.angle)*s.len,s.y-Math.sin(s.angle)*s.len);
+        g.addColorStop(0,'#fff'); g.addColorStop(1,'transparent');
+        ctx.strokeStyle=g; ctx.lineWidth=1.5;
+        ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(s.x-Math.cos(s.angle)*s.len,s.y-Math.sin(s.angle)*s.len); ctx.stroke(); ctx.restore();
+      }
+    }
+    setInterval(()=>{if(document.visibilityState!=='hidden')spawnShootingStar();},3500);
+
+    const nebulae=[{x:.75,y:.3,r:.35,c:'rgba(37,99,235,'},{x:.2,y:.7,r:.28,c:'rgba(96,165,250,'},{x:.5,y:.15,r:.22,c:'rgba(37,99,235,'}];
+    function drawNebulae(){
+      for(const n of nebulae){
+        const cx=n.x*W,cy=n.y*H,rad=n.r*Math.min(W,H);
+        const g=ctx.createRadialGradient(cx,cy,0,cx,cy,rad);
+        g.addColorStop(0,n.c+'.09)'); g.addColorStop(.6,n.c+'.04)'); g.addColorStop(1,n.c+'0)');
+        ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+      }
+    }
+
+    function loop(){
+      ctx.fillStyle=CONFIG.bgColor; ctx.fillRect(0,0,W,H);
+      drawNebulae(); drawConnections();
+      for(const p of particles){p.update();p.draw();}
+      updateShootingStars(); animId=requestAnimationFrame(loop);
+    }
+    function init(){resize();particles=Array.from({length:CONFIG.particleCount},()=>new Particle());cancelAnimationFrame(animId);loop();}
+    window.addEventListener('resize',resize);
+    document.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;});
+    document.addEventListener('mouseleave',()=>{mouse.x=-9999;mouse.y=-9999;});
+    canvas.addEventListener('touchmove',e=>{const r=canvas.getBoundingClientRect();mouse.x=e.touches[0].clientX-r.left;mouse.y=e.touches[0].clientY-r.top;e.preventDefault();},{passive:false});
+    canvas.addEventListener('touchend',()=>{mouse.x=-9999;mouse.y=-9999;});
+    document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')cancelAnimationFrame(animId);else loop();});
+    init();
+  })();
+
+  /* ── 2. PROFILE CANVAS ───────────────────────────────────────────── */
+  (function initProfile(){
+    const canvas=document.getElementById('profileCanvas');
+    if(!canvas)return;
+    const ctx=canvas.getContext('2d');
+    const SIZE=270; canvas.width=SIZE; canvas.height=SIZE;
+    function drawFallback(){
+      ctx.clearRect(0,0,SIZE,SIZE); ctx.save();
+      ctx.beginPath(); ctx.arc(SIZE/2,SIZE/2,SIZE/2,0,Math.PI*2); ctx.clip();
+      const g=ctx.createLinearGradient(0,0,SIZE,SIZE);
+      g.addColorStop(0,'#1D4ED8'); g.addColorStop(1,'#3B82F6');
+      ctx.fillStyle=g; ctx.fillRect(0,0,SIZE,SIZE);
+      ctx.fillStyle='#fff'; ctx.font=`bold 72px 'Playfair Display',serif`;
+      ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('MS',SIZE/2,SIZE/2); ctx.restore();
+    }
+    function drawRounded(imgEl){
+      ctx.clearRect(0,0,SIZE,SIZE); ctx.save();
+      ctx.beginPath(); ctx.arc(SIZE/2,SIZE/2,SIZE/2,0,Math.PI*2); ctx.clip();
+      const iw=imgEl.naturalWidth,ih=imgEl.naturalHeight;
+      ctx.drawImage(imgEl,iw*.03,ih*.015,iw*.295,ih*.225,0,0,SIZE,SIZE); ctx.restore();
+    }
+    const img=new Image();
+    img.onload=()=>drawRounded(img); img.onerror=drawFallback;
+    img.src='Mohammad_Sakib_Hossen_CV_pdf.png';
+  })();
+
+  /* ── 3. NAVBAR ───────────────────────────────────────────────────── */
+  (function initNav(){
+    const navbar=document.getElementById('navbar');
+    const menuBtn=document.getElementById('menuBtn');
+    const mobileMenu=document.getElementById('mobileMenu');
+    window.addEventListener('scroll',()=>navbar.classList.toggle('shadow-lg',window.scrollY>20));
+    menuBtn.addEventListener('click',()=>{
+      const open=mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.toggle('flex',!open);
+      const spans=menuBtn.querySelectorAll('span');
+      const isOpen=!open;
+      spans[0].style.transform=isOpen?'rotate(45deg) translate(5px,5px)':'';
+      spans[1].style.opacity=isOpen?'0':'1';
+      spans[2].style.transform=isOpen?'rotate(-45deg) translate(5px,-5px)':'';
+    });
+    mobileMenu.querySelectorAll('a').forEach(link=>{
+      link.addEventListener('click',()=>{
+        mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex');
+        menuBtn.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='1';});
+      });
+    });
+    const allLinks=document.querySelectorAll('.nav-link');
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          allLinks.forEach(l=>l.classList.remove('active'));
+          const active=[...allLinks].find(l=>l.getAttribute('href')==='#'+entry.target.id);
+          if(active)active.classList.add('active');
+        }
+      });
+    },{threshold:.35});
+    document.querySelectorAll('section[id]').forEach(s=>io.observe(s));
+  })();
+
+  /* ── 4. SCROLL FADE-IN ───────────────────────────────────────────── */
+  (function initFadeIn(){
+    const items=document.querySelectorAll('.fade-up');
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const siblings=[...entry.target.parentElement.querySelectorAll('.fade-up:not(.visible)')];
+          const idx=siblings.indexOf(entry.target);
+          setTimeout(()=>entry.target.classList.add('visible'),idx*90);
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:.12});
+    items.forEach(el=>observer.observe(el));
+  })();
+
+  /* ── 5. SMOOTH SCROLL ────────────────────────────────────────────── */
+  document.querySelectorAll('a[href^="#"]').forEach(link=>{
+    link.addEventListener('click',e=>{
+      const target=document.querySelector(link.getAttribute('href'));
+      if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+  });
+
+  /* ── 6. TYPED TEXT ───────────────────────────────────────────────── */
+  (function initTyped(){
+    const el=document.getElementById('typedText');
+    if(!el)return;
+    const roles=['Front-End Developer','Senior SEO Executive (ORM)','ReactJS Engineer','Digital Growth Strategist'];
+    let roleIdx=0,charIdx=0,deleting=false,paused=false;
+    function tick(){
+      const current=roles[roleIdx];
+      if(paused){paused=false;setTimeout(tick,1800);return;}
+      if(!deleting){
+        el.textContent=current.slice(0,++charIdx);
+        if(charIdx===current.length){deleting=true;paused=true;}
+        setTimeout(tick,68);
+      } else {
+        el.textContent=current.slice(0,--charIdx);
+        if(charIdx===0){deleting=false;roleIdx=(roleIdx+1)%roles.length;paused=true;}
+        setTimeout(tick,32);
+      }
+    }
+    setTimeout(tick,1200);
+  })();
+  </script>
 </body>
 </html>
